@@ -53,5 +53,19 @@ http {
     server_tokens off;
 
     include /etc/nginx/conf.d/*.conf;
+    
+    server {
+        server_name _;
+	root /usr/share/nginx/html;
+        {% if NGINX_ENABLE_SSL|default('False') == 'True' %}
+        listen 443;
+        ssl on;
+
+        ssl_certificate /etc/ssl/certs/ssl-cert.pem;
+        ssl_certificate_key /etc/ssl/private/ssl-cert.key;
+        {% else %}
+        listen 80;
+        {% endif %}
+    }
 }
 
