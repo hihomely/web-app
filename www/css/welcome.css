@@ -1,0 +1,59 @@
+/** WELCOME CSS **/
+
+#welcome {
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    height: auto;
+    width: auto;
+    top: 0;
+    left: 0;
+}
+
+body.full-bg {
+    background: #191919 url(../images/bg/diamonds.png) repeat;
+}
+
+.login-wrapper {
+    margin-top: 10%;
+}
+
+button.login {
+    display: block;
+    margin: 10px auto;
+    cursor: pointer;
+    color: #FFF;
+    padding: 10px 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 3px solid transparent;
+}
+
+    button.login:hover {
+        border-bottom: 3px solid #FFF;
+    }
+
+    button.login img {
+        filter: brightness(0) invert(1);
+        -webkit-filter: brightness(0) invert(1);
+        transition: 500ms filter linear;
+        -webkit-transition: 500ms -webkit-filter linear;
+    }
+
+    button.login:hover img {
+        filter: none;
+        -webkit-filter: none;
+    }
+
+    button.login span {
+        padding-left: 10px;
+        font-size: 1.4em;
+    }
+
+footer {
+    position: fixed;
+    bottom: 20px;
+    color: #666;
+    width: 100%;
+    text-align: center;
+}

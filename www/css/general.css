@@ -1,0 +1,61 @@
+/** GENERAL CSS **/
+
+@import url(//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,700,500italic,900,700italic,900italic);
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #d5d5d5;
+}
+
+p {
+    margin: 0;
+}
+
+ol, ul, li {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none outside none;
+}
+
+a {
+    text-decoration: underline;
+    color: #666;
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+}
+
+.hi {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left:0;
+    right:0;
+    margin: auto;
+    width:95%;
+    height: 50%;
+    text-align: center;
+}
+
+    .hi h1 {
+        font-weight: 200;
+        font-size: 4em;
+    }
+
+    .hi h3 {
+        font-weight: normal;
+        font-size: 2em;
+    }
+
+.section-surround {
+    position: relative;
+    height: 35%;
+    color: #FFF;
+}

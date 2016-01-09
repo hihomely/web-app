@@ -6,15 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="homely, personalised, homepage"/>
     <meta name="description" content="Homely is a personalised homepage built for you that self-updates throughout your day."/>
+    <!--<link href="../css/welcome.css" type="text/css" rel="stylesheet" />-->
+    <!--<link href="../css/general.css" type="text/css" rel="stylesheet" />-->
+    <link href="/css/welcome.css" type="text/css" rel="stylesheet" />
+    <link href="/css/general.css" type="text/css" rel="stylesheet" />
 </head>
-<body>
-<div id="top-wrapper">
-    <div id="top">
+<body class="full-bg">
+    <div id="welcome" class="section-surround">
         <div class="hi">
             <h1>HOMELY</h1>
-            <h3>Your home on the web. Welcome.</h3>
+            <h3>Your home on the web</h3>
+            <div class="login-wrapper">
+                <button class="login" onclick="location.href='//bbc.com'">
+                    <!--<img src="../images/google_signin.svg" height="50" width="50">-->
+                    <img src="/images/google_signin.svg" height="50" width="50">
+                    <span>Sign in with Google</span>
+                </button>
+                <button class="login" onclick="location.href='//bbc.com'">
+                    <!--<img src="../images/microsoft_signin.svg" height="50" width="50">-->
+                    <img src="/images/microsoft_signin.svg" height="50" width="50">
+                    <span>Sign in with Microsoft</span>
+                </button>
+            </div>
         </div>
     </div>
-</div>
+    <footer>
+        <span>© Homely 2016</span>
+    </footer>
 </body>
 </html>
