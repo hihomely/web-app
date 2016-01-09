@@ -9,7 +9,7 @@ RUN apt-get update && \
 RUN easy_install j2cli
 
 # Copy the nginx config template to the expected dir for the bash script below.
-COPY nginx.conf.j2 /templates/
+# COPY nginx.conf.j2 /templates/
 
 COPY /www /usr/share/nginx/html
 
