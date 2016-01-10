@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="homely, personalised, homepage"/>
     <meta name="description" content="Homely is a personalised homepage built for you that self-updates throughout your day."/>
+    <link type="image/x-icon" rel="shortcut icon" href="/images/favicon.ico">
     <link href="/css/general.css" type="text/css" rel="stylesheet" />
     <script type="text/javascript" src="/js/config.js"></script>
     <script type="text/javascript" src="/js/hello.all.min-1.10.0.js"></script>
@@ -14,7 +15,12 @@
             google: CONFIG.OAUTH_GOOGLE_ID,
             windows: CONFIG.OAUTH_WINDOWS_ID
         });
-        if (!hello('google').getAuthResponse() && !hello('windows').getAuthResponse()) {
+        function userOnline(authResponse) {
+            if (!authResponse) return false;
+            var currentTime = (new Date()).getTime() / 1000;
+            return authResponse && authResponse.access_token && authResponse.expires > currentTime;
+        }
+        if (!userOnline(hello('google').getAuthResponse()) && !userOnline(hello('windows').getAuthResponse())) {
             window.location.replace('/welcome');
         }
         hello.on('auth.login', function(auth) {
