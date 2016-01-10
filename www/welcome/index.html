@@ -56,8 +56,9 @@
             hello(auth.network).api('/me').then(function(r) {
                 changeState('signedin');
                 $('#signedin-text').text((r.name)? r.name: 'Enter');
-                // check google or windows responses for user picture
-                var pictureUrl = r.image.url || r.picture;
+                // check windows or google responses for user picture
+                // this boolean logic checks to see if each property is defined as well.
+                var pictureUrl = r.picture || (r.image && r.image.url);
                 if (pictureUrl) {
                     // only set the picture if it was found.
                     $('#signedin-img').attr("src", pictureUrl);
