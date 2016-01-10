@@ -14,14 +14,12 @@
             google: CONFIG.OAUTH_GOOGLE_ID,
             windows: CONFIG.OAUTH_WINDOWS_ID
         });
-        console.log(hello('google').getAuthResponse());
-        console.log(hello('windows').getAuthResponse());
+        if (!hello('google').getAuthResponse() && !hello('windows').getAuthResponse()) {
+            window.location.replace('/welcome');
+        }
         hello.on('auth.login', function(auth) {
-            console.log('auth1', auth);
-            hello(auth.network).api('/me').then(function(r) {
-                console.log(hello('google').getAuthResponse());
-                console.log(hello('windows').getAuthResponse());
-            }, function(err) {
+            hello(auth.network).api('/me').then(function() {
+            }, function() {
                 window.location.replace('/welcome');
             });
         });
