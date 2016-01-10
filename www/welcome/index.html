@@ -11,11 +11,51 @@
     <link href="/css/general.css" type="text/css" rel="stylesheet" />
     <script type="text/javascript" src="/js/config.js"></script>
     <script type="text/javascript" src="/js/hello.all.min-1.10.0.js"></script>
+    <script type="text/javascript" src="/js/jquery-2.2.0.min.js"></script>
     <script>
+        function changeState(newstate) {
+            switch (newstate) {
+                case 'loading':
+                    $('#signin').hide();
+                    $('#signedin').hide();
+                    $('#signinloading').show();
+                    break;
+                case 'signedin':
+                    $('#signin').hide();
+                    $('#signinloading').hide();
+                    $('#signedin').show();
+                    break;
+                case 'notsignedin':
+                default:
+                    $('#signedin').hide();
+                    $('#signinloading').hide();
+                    $('#signin').show();
+                    break;
+            }
+        }
+        $(document).ready(function() {
+            if (hello('google').getAuthResponse() || hello('windows').getAuthResponse()) {
+                changeState('loading');
+            } else {
+                changeState('notsignedin');
+            }
+        });
         hello.init({
             google: CONFIG.OAUTH_GOOGLE_ID,
             windows: CONFIG.OAUTH_WINDOWS_ID
         }, {redirect_uri: '/'});
+        hello.on('auth.login', function(auth) {
+            hello(auth.network).api('/me').then(function(r) {
+                changeState('signedin');
+                $('#signedin-text').text((r.name)? r.name: 'Enter');
+                $('#signedin-img').attr("src", r.image.url);
+            }, function(err) {
+                changeState('notsignedin');
+            });
+        });
+        function helloLogin (network) {
+            hello(network).login();
+        }
     </script>
 </head>
 <body class="full-bg">
@@ -23,14 +63,26 @@
         <div class="hi">
             <h1>HOMELY</h1>
             <h3>Your home on the web</h3>
-            <div class="login-wrapper">
-                <button class="login" onclick="hello('google').login()">
+            <h3 data-bind="text: loggedIn"></h3>
+            <div id="signin" class="login-wrapper">
+                <button class="login" onclick="helloLogin('google')">
                     <img src="/images/google_signin.svg" height="50" width="50">
                     <span>Sign in with Google</span>
                 </button>
-                <button class="login" onclick="hello('windows').login()">
+                <button class="login" onclick="helloLogin('windows')">
                     <img src="/images/microsoft_signin.svg" height="50" width="50">
                     <span>Sign in with Microsoft</span>
+                </button>
+            </div>
+            <div id="signedin" class="login-wrapper">
+                <button class="login" onclick="location.href='/'">
+                    <img id="signedin-img" height="70" width="70">
+                    <span id="signedin-text">Enter</span>
+                </button>
+            </div>
+            <div id="signinloading" class="login-wrapper">
+                <button class="login">
+                    <span>Loading...</span>
                 </button>
             </div>
         </div>

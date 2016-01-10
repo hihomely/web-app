@@ -6,6 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="homely, personalised, homepage"/>
     <meta name="description" content="Homely is a personalised homepage built for you that self-updates throughout your day."/>
+    <link href="/css/general.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/config.js"></script>
+    <script type="text/javascript" src="/js/hello.all.min-1.10.0.js"></script>
+    <script>
+        hello.init({
+            google: CONFIG.OAUTH_GOOGLE_ID,
+            windows: CONFIG.OAUTH_WINDOWS_ID
+        });
+        console.log(hello('google').getAuthResponse());
+        console.log(hello('windows').getAuthResponse());
+        hello.on('auth.login', function(auth) {
+            console.log('auth1', auth);
+            hello(auth.network).api('/me').then(function(r) {
+                console.log(hello('google').getAuthResponse());
+                console.log(hello('windows').getAuthResponse());
+            }, function(err) {
+                window.location.replace('/welcome');
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="top-wrapper">

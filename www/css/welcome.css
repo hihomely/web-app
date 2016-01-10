@@ -23,7 +23,7 @@ button.login {
     margin: 10px auto;
     cursor: pointer;
     color: #FFF;
-    padding: 10px 0;
+    padding: 10px;
     background: transparent;
     border: 0;
     border-bottom: 3px solid transparent;
@@ -45,9 +45,20 @@ button.login {
         -webkit-filter: none;
     }
 
+    #signedin-img {
+        filter: none;
+    }
+
     button.login span {
-        padding-left: 10px;
         font-size: 1.4em;
+    }
+
+    #signedin-text {
+        font-size: 2em;
+    }
+
+    button.login img ~ span {
+        padding-left: 10px;
     }
 
 footer {
