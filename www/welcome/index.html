@@ -14,22 +14,25 @@
     <script type="text/javascript" src="/js/jquery-2.2.0.min.js"></script>
     <script>
         function changeState(newstate) {
+            var signinElement = $('#signin');
+            var signedinElement = $('#signedin');
+            var signinloadingElement = $('#signinloading');
             switch (newstate) {
                 case 'loading':
-                    $('#signin').hide();
-                    $('#signedin').hide();
-                    $('#signinloading').show();
+                    signinElement.hide();
+                    signedinElement.hide();
+                    signinloadingElement.show();
                     break;
                 case 'signedin':
-                    $('#signin').hide();
-                    $('#signinloading').hide();
-                    $('#signedin').show();
+                    signinElement.hide();
+                    signedinElement.show();
+                    signinloadingElement.hide();
                     break;
                 case 'notsignedin':
                 default:
-                    $('#signedin').hide();
-                    $('#signinloading').hide();
-                    $('#signin').show();
+                    signinElement.show();
+                    signedinElement.hide();
+                    signinloadingElement.hide();
                     break;
             }
         }
