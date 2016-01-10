@@ -9,7 +9,14 @@
     <link type="image/x-icon" rel="shortcut icon" href="/images/favicon.ico">
     <link href="/css/welcome.css" type="text/css" rel="stylesheet" />
     <link href="/css/general.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript" src="/libs/hello.all.min-1.10.0.js"></script>
+    <script type="text/javascript" src="/js/config.js"></script>
+    <script type="text/javascript" src="/js/hello.all.min-1.10.0.js"></script>
+    <script>
+        hello.init({
+            google: CONFIG.OAUTH_GOOGLE_ID,
+            windows: CONFIG.OAUTH_WINDOWS_ID
+        }, {redirect_uri: 'redirect.html'});
+    </script>
 </head>
 <body class="full-bg">
     <div id="welcome" class="section-surround">
