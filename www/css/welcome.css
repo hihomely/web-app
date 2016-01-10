@@ -45,10 +45,6 @@ button.login {
         -webkit-filter: none;
     }
 
-    #signedin-img {
-        filter: none;
-    }
-
     button.login span {
         font-size: 1.4em;
     }
@@ -60,6 +56,11 @@ button.login {
     button.login img ~ span {
         padding-left: 10px;
     }
+
+#signedin-img {
+    filter: none;
+    -webkit-filter: none;
+}
 
 footer {
     position: fixed;
