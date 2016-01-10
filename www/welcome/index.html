@@ -46,13 +46,22 @@
         hello.init({
             google: CONFIG.OAUTH_GOOGLE_ID,
             windows: CONFIG.OAUTH_WINDOWS_ID
-        }, {redirect_uri: '/'});
+        }, {redirect_uri: '/', force: true});
         hello.on('auth.login', function(auth) {
             hello(auth.network).api('/me').then(function(r) {
                 changeState('signedin');
                 $('#signedin-text').text((r.name)? r.name: 'Enter');
-                $('#signedin-img').attr("src", r.image.url);
-            }, function(err) {
+                // check google or windows responses for user picture
+                var pictureUrl = r.image.url || r.picture;
+                if (pictureUrl) {
+                    // only set the picture if it was found.
+                    $('#signedin-img').attr("src", pictureUrl);
+                } else {
+                    // Remove the element completely from the DOM
+                    $('#signedin-img').remove();
+                }
+            }, function() {
+                // Error signing in
                 changeState('notsignedin');
             });
         });
