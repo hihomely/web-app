@@ -56,6 +56,7 @@
             hello(auth.network).api('/me').then(function(r) {
                 changeState('signedin');
                 $('#signedin-text').text((r.name)? r.name: 'Enter');
+                $('#signedin-subtext').text((r.name)? 'Not '+r.name+'?': 'Not this user?');
                 // check windows or google responses for user picture
                 // this boolean logic checks to see if each property is defined as well.
                 var pictureUrl = r.picture || (r.image && r.image.url);
@@ -73,6 +74,12 @@
         });
         function helloLogin (network) {
             hello(network).login();
+        }
+        function helloLogout () {
+            // log out and reload welcome page
+            hello('windows').logout();
+            hello('google').logout();
+            window.location.replace('/welcome');
         }
     </script>
 </head>
@@ -96,6 +103,9 @@
                 <button class="login" onclick="location.href='/'">
                     <img id="signedin-img" height="70" width="70">
                     <span id="signedin-text">Enter</span>
+                </button>
+                <button class="login" onclick="helloLogout()">
+                    <span id="signedin-subtext">Not this user?</span>
                 </button>
             </div>
             <div id="signinloading" class="login-wrapper">
